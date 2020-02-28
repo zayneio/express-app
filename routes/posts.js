@@ -1,19 +1,7 @@
 const router = require('express').Router();
 const verify = require('./verifyToken');
+const posts = require('../controllers/postsController');
 
-router.get('/', verify, (req, res) => {
-  res.json({
-    posts: [
-      { 
-        title: 'Post 1', 
-        descripiton: 'this post is private.' 
-      },
-      { 
-        title: 'Post 2', 
-        descripiton: 'this post is also private.' 
-      },
-    ]
-  })
-});
+router.get('/', verify, posts.index);
 
 module.exports = router;
