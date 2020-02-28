@@ -3,6 +3,7 @@ const User = require('../model/User');
 const registrationValidations = require('../validations/registrationValidations');
 const loginValidations = require('../validations/loginValidations');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 router.post('/register', async function(req, res) {  
   const { error } = registrationValidations(req.body);
@@ -48,7 +49,9 @@ router.post('/login', async (req, res) => {
   const validPass = await bcrypt.compare(req.body.password, user.password);
   if(!validPass) return res.status(400).send('Email or password is invalid');
 
-  res.send('Login')
+  // Create and assign a JWT token
+  const token = jwt.sign({_id: user._id}, process.env.JWT_SECRET)
+  res.header('AUTH-TOKEN', token).send(token)
 })
 
 module.exports = router;

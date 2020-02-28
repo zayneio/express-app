@@ -9,6 +9,7 @@ mongoose.connect(url);
 //Import Routes
 const authRoute = require('./routes/auth');
 const pingRoute = require('./routes/ping');
+const postsRoute = require('./routes/posts');
 
 //Middleware
 app.use(express.json());
@@ -16,5 +17,6 @@ app.use(express.json());
 //Route Middleware
 app.use('/', pingRoute);
 app.use('/api/user', authRoute);
+app.use('/api/posts', postsRoute);
 
 app.listen(3000, () => console.log('server running.'));
