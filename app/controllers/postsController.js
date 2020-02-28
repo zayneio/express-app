@@ -27,7 +27,7 @@ exports.create = async (req, res) => {
 
   try {
     const savedPost = await post.save();
-    res.send({post: savedPost._id});
+    res.send({ post: savedPost._id });
   } catch(err) {
     res.status(400).send(err)
   }
