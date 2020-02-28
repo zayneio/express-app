@@ -31,6 +31,17 @@ exports.create = async (req, res) => {
   } catch(err) {
     res.status(400).send(err)
   }
-
-  res.json()  
 };
+
+exports.update = async (req, res) => {
+  const post = Post.update({ _id: req.params.id },
+    { 
+      $set: {
+        title: req.body.title,
+        description: req.body.description,
+      } 
+    }
+  )
+
+  res.json(post)  
+}
