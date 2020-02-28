@@ -13,7 +13,7 @@ const pingRoute = require('./routes/ping');
 //Middleware
 app.use(express.json());
 
-//Route Middlewares
+//Route Middleware
 app.use('/', pingRoute);
 app.use('/api/user', authRoute);
 
