@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const verify = require('./verifyToken');
-const posts = require('../controllers/postsController');
+const posts = require('../app/controllers/postsController');
 
 router.get('/', verify, posts.index);
 router.post('/', verify, posts.create);
